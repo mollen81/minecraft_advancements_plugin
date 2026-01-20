@@ -26,7 +26,7 @@ public class PlayerProfile
         return this.attempt;
     }
 
-    public long getAttemptTime(long attemptTime)
+    public long getAttemptTime()
     {
         return this.attemptTime;
     }
