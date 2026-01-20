@@ -7,15 +7,21 @@ import java.util.UUID;
 
 public class PlayerProfile
 {
-    UUID uuid;
+    private final UUID uuid;
 
-    PlayerMode playerMode;
+    private PlayerMode playerMode;
 
-    int attempt;
-    long attemptTime;
+    private int attempt;
+    private long attemptTime;
 
-    Set<NamespacedKey> completedAdvancements;
+    private final Set<NamespacedKey> completedAdvancements;
 
+    // Constructor
+    public PlayerProfile(UUID uuid, Set<NamespacedKey> completedAdvancements)
+    {
+        this.uuid = uuid;
+        this.completedAdvancements = completedAdvancements;
+    }
 
     public UUID getUuid()
     {
@@ -27,18 +33,38 @@ public class PlayerProfile
         return this.playerMode;
     }
 
+    // attempt
     public int getAttempt()
     {
         return this.attempt;
     }
 
+    // attemptTime
     public long getAttemptTime()
     {
         return this.attemptTime;
     }
 
+    public void setAttemptTime(long time)
+    {
+        this.attemptTime = time;
+    }
+
+    public void tickTime()
+    {
+        attemptTime++;
+    }
+
+    // completedAdvancements
     public Set<NamespacedKey> getCompletedAdvancements()
     {
         return this.completedAdvancements;
+    }
+
+
+    public void resetProgress()
+    {
+        completedAdvancements.clear();
+        attemptTime = 0;
     }
 }
