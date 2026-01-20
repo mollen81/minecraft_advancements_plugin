@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
-import plugin.AdvancementsTracker;
+import plugin.AdvancementsTrackerPlugin;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,12 +22,12 @@ public class Config
 
     public static void init()
     {
-        Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin(AdvancementsTracker.PluginName);
+        Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin(AdvancementsTrackerPlugin.PluginName);
         if(plugin == null)
         {
             Bukkit.getLogger().log(
                     Level.WARNING,
-                    MessageFormat.format("Cannot get plugin {0}", AdvancementsTracker.PluginName)
+                    MessageFormat.format("Cannot get plugin {0}", AdvancementsTrackerPlugin.PluginName)
             );
             return;
         }
