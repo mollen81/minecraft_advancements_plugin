@@ -15,4 +15,19 @@ public class PlayerProfile
     long attemptTime;
 
     Set<NamespacedKey> completedAdvancements;
+
+    public PlayerMode getPlayerMode()
+    {
+        return this.playerMode;
+    }
+
+    public int getAttempt()
+    {
+        return this.attempt;
+    }
+
+    public long getAttemptTime(long attemptTime)
+    {
+        return this.attemptTime;
+    }
 }
