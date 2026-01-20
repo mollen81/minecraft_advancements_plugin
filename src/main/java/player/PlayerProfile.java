@@ -16,6 +16,12 @@ public class PlayerProfile
 
     Set<NamespacedKey> completedAdvancements;
 
+
+    public UUID getUuid()
+    {
+        return uuid;
+    }
+
     public PlayerMode getPlayerMode()
     {
         return this.playerMode;
@@ -29,5 +35,10 @@ public class PlayerProfile
     public long getAttemptTime()
     {
         return this.attemptTime;
+    }
+
+    public Set<NamespacedKey> getCompletedAdvancements()
+    {
+        return this.completedAdvancements;
     }
 }
