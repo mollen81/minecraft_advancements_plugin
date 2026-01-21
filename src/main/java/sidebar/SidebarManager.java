@@ -1,33 +1,49 @@
 package sidebar;
 
-import fr.mrmicky.fastboard.FastBoard;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerQuitEvent;
+import player.PlayerMode;
+import player.PlayerProfile;
+import player.PlayerProfileService;
+import progress.ProgressService;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class SidebarManager
+public class SidebarManager implements Listener
 {
-    private Map<UUID, Sidebar> sidebars;
+    private final Map<UUID, Sidebar> sidebars = new HashMap<>();
+    private final PlayerProfileService profiles;
+    private final ProgressService progress;
 
-    public void create(Player player)
-    {
-        FastBoard newFastBoard = new FastBoard(player);
-        Sidebar newSidebar = new Sidebar(newFastBoard, player);
-
-        sidebars.put(player.getUniqueId(), newSidebar);
+    public SidebarManager(PlayerProfileService profiles,
+                          ProgressService progress) {
+        this.profiles = profiles;
+        this.progress = progress;
     }
 
-    public void remove(Player player)
-    {
-        sidebars.remove(player.getUniqueId());
-    }
+    public void tick() {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            Sidebar sb = sidebars.computeIfAbsent(
+                    p.getUniqueId(), id -> new Sidebar(p));
 
-    public void tick()
-    {
-        for(Sidebar sidebar : sidebars.values())
-        {
-            sidebar.update();
+            PlayerProfile profile = profiles.get(p);
+            if (profile.getPlayerMode() == PlayerMode.HARDCORE) {
+                profile.tickTime();
+            }
+
+            sb.update(profile, progress);
         }
+    }
+
+    @EventHandler
+    public void onQuit(PlayerQuitEvent e) {
+        Sidebar sb = sidebars.remove(e.getPlayer().getUniqueId());
+        if (sb != null) sb.delete();
+        profiles.unload(e.getPlayer());
     }
 }

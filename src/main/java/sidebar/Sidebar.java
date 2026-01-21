@@ -15,10 +15,11 @@ public class Sidebar
     private final FastBoard board;
     private final Player player;
 
-    public Sidebar(FastBoard board, Player player)
+    public Sidebar(Player player)
     {
-        this.board = board;
+        this.board = new FastBoard(player);
         this.player = player;
+        board.updateTitle("[ Advancements Plugin ]");
     }
 
 
@@ -31,7 +32,6 @@ public class Sidebar
         }
 
         List<String> lines = new ArrayList<>();
-        lines.add("[ Advancements Plugin ]");
 
         if(profile.getPlayerMode() == PlayerMode.HARDCORE)
         {
@@ -39,8 +39,14 @@ public class Sidebar
             lines.add("Attempt time: " + TimeFormatter.format(profile.getAttemptTime()));
         }
 
-        lines.add("Progress : " + progressService.)
+        lines.add("Progress : " + progressService.getCompletedCount(profile) + "% / 100.0%");
 
-        board.updateLines();
+
+        board.updateLines(lines);
+    }
+
+    public void delete()
+    {
+        board.delete();
     }
 }
