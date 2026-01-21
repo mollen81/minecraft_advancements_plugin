@@ -36,7 +36,13 @@
         </dependency>
 
 
-        <!-- https://mvnrepository.com/artifact/org.bukkit/bukkit -->
+        <!-- Source: https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>7.0.2</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
