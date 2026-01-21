@@ -29,16 +29,19 @@ public class ProgressService
 
     public void resetProgress(Player player)
     {
-
+        PlayerProfile profile = profileService.get(player);
+        storage.clearAdvancements(player.getUniqueId(), profile.getAttempt() - 1);
+        profile.resetProgress();
     }
+
 
     public Double getProgressPercent(Player player)
     {
         return null;
     }
 
-    public Integer getCompletedCount(Player player)
+    public Integer getCompletedCount(PlayerProfile profile)
     {
-        return null;
+        return profile.getCompletedAdvancements().size();
     }
 }
