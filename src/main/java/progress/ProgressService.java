@@ -37,6 +37,23 @@ public class ProgressService
 
     }
 
+    public double getProgressPercent(PlayerProfile playerProfile)
+    {
+        int completed = 0;
+
+        if (allAdvancements.isEmpty()) return  0.0;
+
+        for(NamespacedKey key : playerProfile.getCompletedAdvancements())
+        {
+            if(allAdvancements.contains(key))
+            {
+                completed++;
+            }
+        }
+
+        return (completed / 100.0) / allAdvancements.size();
+    }
+
     public void resetProgress(Player player)
     {
         PlayerProfile profile = profileService.get(player);
