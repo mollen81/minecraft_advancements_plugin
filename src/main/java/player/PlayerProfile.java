@@ -14,13 +14,12 @@ public class PlayerProfile
     private int attempt;
     private long attemptTime;
 
-    private final Set<NamespacedKey> completedAdvancements;
+    private Set<NamespacedKey> completedAdvancements;
 
     // Constructor
-    public PlayerProfile(UUID uuid, Set<NamespacedKey> completedAdvancements)
+    public PlayerProfile(UUID uuid)
     {
         this.uuid = uuid;
-        this.completedAdvancements = completedAdvancements;
     }
 
     public UUID getUuid()
@@ -33,10 +32,20 @@ public class PlayerProfile
         return this.playerMode;
     }
 
+    public void setPlayerMode(PlayerMode playerMode)
+    {
+        this.playerMode = playerMode;
+    }
+
     // attempt
     public int getAttempt()
     {
         return this.attempt;
+    }
+
+    public void setAttempt(int attempt)
+    {
+        this.attempt = attempt;
     }
 
     // attemptTime
@@ -58,7 +67,7 @@ public class PlayerProfile
     // completedAdvancements
     public Set<NamespacedKey> getCompletedAdvancements()
     {
-        return this.completedAdvancements;
+        return completedAdvancements;
     }
 
 
