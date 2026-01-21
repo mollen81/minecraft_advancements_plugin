@@ -1,5 +1,6 @@
 package progress;
 
+import animations.Spiral;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import player.PlayerProfile;
@@ -25,6 +26,8 @@ public class ProgressService
         {
             storage.addAdvancement(profile.getUuid(), key, profile.getAttempt());
         }
+
+
     }
 
     public void resetProgress(Player player)
