@@ -22,12 +22,12 @@ public class Config
 
     public static void init()
     {
-        Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin(AdvancementsTrackerPlugin.PluginName);
+        Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin(AdvancementsTrackerPlugin.pluginName);
         if(plugin == null)
         {
             Bukkit.getLogger().log(
                     Level.WARNING,
-                    MessageFormat.format("Cannot get plugin {0}", AdvancementsTrackerPlugin.PluginName)
+                    MessageFormat.format("Cannot get plugin {0}", AdvancementsTrackerPlugin.pluginName)
             );
             return;
         }
